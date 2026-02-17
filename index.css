@@ -878,3 +878,73 @@ body.light-theme .offcanvas.mobile-offcanvas hr{
 body.light-theme .offcanvas.mobile-offcanvas .btn-close{
   filter: none;
 }
+/* ---------- Desktop / Default ---------- */
+
+.brand-logo{
+  height: 58px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-logo-nm{
+  height: 58px;
+  width: auto;
+  object-fit: contain;
+
+  /* desktop zoom */
+  transform: scale(4);
+  transform-origin: left center;
+
+  margin-left: -29px;
+  padding-top: 1px;
+}
+
+.brand-text{
+  font-weight: 800;
+  letter-spacing: .2px;
+  line-height: 1;
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 991px){
+  .brand-logo-nm{
+    transform: scale(2.2);
+    margin-left: -18px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 576px){
+
+  /* navbar height control */
+  .navbar{
+    padding: 6px 0;
+  }
+
+  .navbar-brand{
+    display: flex;
+    align-items: center;
+  }
+
+  .brand-logo-nm{
+  height: 58px;
+  width: auto;
+  object-fit: contain;
+
+  /* desktop zoom */
+  transform: scale(3);
+  transform-origin: left center;
+
+  margin-left: -29px;
+  padding-top: 1px;
+  }
+
+  .brand-logo{
+    height: 42px;
+  }
+
+  .brand-text{
+    font-size: 16px;
+  }
+}
