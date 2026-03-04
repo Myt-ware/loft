@@ -67,9 +67,11 @@
     <i class="bi bi-moon-stars-fill" id="themeIconMobile"></i>
   </button>
 
-  <button class="btn btn-dark flex-grow-1" onclick="goToCart()" type="button">
-    <i class="bi bi-bag me-1"></i> Cart <span class="badge text-bg-warning ms-1">0</span>
-  </button>
+   <a href="cart.html" class="btn btn-dark flex-grow-1 cart-icon">
+  <i class="bi bi-bag me-1"></i>
+  Cart
+  <span id="cart-count" class="badge text-bg-warning ms-1">0</span>
+</a>
 </div>
 
       </div>
@@ -105,9 +107,11 @@
 </button>
 
 
-  <a class="btn btn-dark flex-grow-1" href="cart.html" type="button">
-    <i class="bi bi-bag me-1"></i> Cart <span class="badge text-bg-warning ms-1">0</span>
-  </a>
+ <a href="cart.html" class="btn btn-dark flex-grow-1 cart-icon">
+  <i class="bi bi-bag me-1"></i>
+  Cart
+  <span id="cart-count" class="badge text-bg-warning ms-1">0</span>
+</a>
 </div>
     </div>
   </div>
@@ -236,7 +240,7 @@
       </div>
     </div>
 
-    <div class="row g-3 new-row-scroll">
+    <div class="products-container row g-3 new-row-scroll">
 
       <!-- Product 1 -->
       <div class="col-sm-6 col-lg-3">
@@ -253,9 +257,29 @@
               <span class="rating">4.6 ★</span>
             </div>
           </div>
+          
           <div class="card-footer   border-0 p-3">
-            <a class="btn btn-warning w-100 mb-2" href="cart.html"  type="button">Add to Cart</a>
-            <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
+
+         <div class="size-section">
+  <label>Select Size:</label>
+
+  <div class="size-options">
+    <button type="button" class="size-btn">S</button>
+    <button type="button" class="size-btn">M</button>
+    <button type="button" class="size-btn">L</button>
+    <button type="button" class="size-btn">XL</button>
+    <button type="button" class="size-btn">XXL</button>
+  </div>
+</div>
+
+<button 
+  class="btn btn-warning w-100 mb-2 add-to-cart"
+  data-name="Floral Midi Dress"
+  data-price="1499"
+  data-image="https://images.pexels.com/photos/1488463/pexels-photo-1488463.jpeg?auto=compress&cs=tinysrgb&w=1200">
+  Add to Cart
+</button>           
+ <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
           </div>
         </div>
       </div>
@@ -276,8 +300,24 @@
             </div>
           </div>
           <div class="card-footer   border-0 p-3">
-            <a class="btn btn-warning w-100 mb-2" href="cart.html"  type="button">Add to Cart</a>
-            <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
+            <div class="size-section">
+  <label>Select Size:</label>
+
+  <div class="size-options">
+    <button type="button" class="size-btn">S</button>
+    <button type="button" class="size-btn">M</button>
+    <button type="button" class="size-btn">L</button>
+    <button type="button" class="size-btn">XL</button>
+    <button type="button" class="size-btn">XXL</button>
+  </div>
+</div>
+<button 
+  class="btn btn-warning w-100 mb-2 add-to-cart"
+  data-name="Men Linen Shirt"
+  data-price="999"
+  data-image="https://5.imimg.com/data5/KK/YQ/MY-10139824/mens-linen-casual-shirt.jpg">
+  Add to Cart
+</button>            <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
           </div>
         </div>
       </div>
@@ -298,7 +338,24 @@
             </div>
           </div>
           <div class="card-footer   border-0 p-3">
-            <a class="btn btn-warning w-100 mb-2" href="cart.html"  type="button">Add to Cart</a>
+            <div class="size-section">
+  <label>Select Size:</label>
+
+  <div class="size-options">
+    <button type="button" class="size-btn">S</button>
+    <button type="button" class="size-btn">M</button>
+    <button type="button" class="size-btn">L</button>
+    <button type="button" class="size-btn">XL</button>
+    <button type="button" class="size-btn">XXL</button>
+  </div>
+</div>
+<button 
+  class="btn btn-warning w-100 mb-2 add-to-cart"
+  data-name="Kids Denim Set"
+  data-price="1199"
+  data-image="https://jujujam.in/cdn/shop/files/Denim_on_Denim_Boys_and_Girls_Classy_Co-ord_Set_3.jpg?v=1754491490&width=1100">
+  Add to Cart
+</button>
             <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
           </div>
         </div>
@@ -320,7 +377,24 @@
             </div>
           </div>
           <div class="card-footer   border-0 p-3">
-            <a class="btn btn-warning w-100 mb-2" href="cart.html"  type="button">Add to Cart</a>
+            <div class="size-section">
+  <label>Select Size:</label>
+
+  <div class="size-options">
+    <button type="button" class="size-btn">S</button>
+    <button type="button" class="size-btn">M</button>
+    <button type="button" class="size-btn">L</button>
+    <button type="button" class="size-btn">XL</button>
+    <button type="button" class="size-btn">XXL</button>
+  </div>
+</div>
+            <button 
+  class="btn btn-warning w-100 mb-2 add-to-cart"
+  data-name="Satin Party Dress"
+  data-price="1899"
+  data-image="https://images.pexels.com/photos/994523/pexels-photo-994523.jpeg?auto=compress&cs=tinysrgb&w=1200">
+  Add to Cart
+</button>
             <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
           </div>
         </div>
@@ -342,7 +416,24 @@
             </div>
           </div>
           <div class="card-footer   border-0 p-3">
-            <a class="btn btn-warning w-100 mb-2" href="cart.html"  type="button">Add to Cart</a>
+            <div class="size-section">
+  <label>Select Size:</label>
+
+  <div class="size-options">
+    <button type="button" class="size-btn">S</button>
+    <button type="button" class="size-btn">M</button>
+    <button type="button" class="size-btn">L</button>
+    <button type="button" class="size-btn">XL</button>
+    <button type="button" class="size-btn">XXL</button>
+  </div>
+</div>
+<button 
+    class="btn btn-warning w-100 mb-2 add-to-cart"
+    data-name="Satin Party Dress"
+    data-price="1899"
+    data-image="https://images.pexels.com/photos/994523/pexels-photo-994523.jpeg?auto=compress&cs=tinysrgb&w=1200">
+  Add to Cart
+</button>
             <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
           </div>
         </div>
@@ -364,8 +455,24 @@
             </div>
           </div>
           <div class="card-footer   border-0 p-3">
-            <a class="btn btn-warning w-100 mb-2" href="cart.html"  type="button">Add to Cart</a>
-            <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
+            <div class="size-section">
+  <label>Select Size:</label>
+
+  <div class="size-options">
+    <button type="button" class="size-btn">S</button>
+    <button type="button" class="size-btn">M</button>
+    <button type="button" class="size-btn">L</button>
+    <button type="button" class="size-btn">XL</button>
+    <button type="button" class="size-btn">XXL</button>
+  </div>
+</div>
+<button 
+      class="btn btn-warning w-100 mb-2 add-to-cart"
+        data-name="Kids Summer Set"
+        data-price="899"
+        data-image="https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&w=1200">
+  Add to Cart
+</button>            <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
           </div>
         </div>
       </div>
@@ -386,8 +493,24 @@
             </div>
           </div>
           <div class="card-footer   border-0 p-3">
-            <a class="btn btn-warning w-100 mb-2" href="cart.html"  type="button">Add to Cart</a>
-            <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
+            <div class="size-section">
+  <label>Select Size:</label>
+
+  <div class="size-options">
+    <button type="button" class="size-btn">S</button>
+    <button type="button" class="size-btn">M</button>
+    <button type="button" class="size-btn">L</button>
+    <button type="button" class="size-btn">XL</button>
+    <button type="button" class="size-btn">XXL</button>
+  </div>
+</div>
+<button 
+      class="btn btn-warning w-100 mb-2 add-to-cart"
+      data-name="Streetwear Hoodie"
+      data-price="1399"
+      data-image="https://i.pinimg.com/736x/10/de/a8/10dea87e4b1d052e4f1f16f877e13fe0.jpg">
+  Add to Cart
+</button>            <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
           </div>
         </div>
       </div>
@@ -408,7 +531,24 @@
             </div>
           </div>
           <div class="card-footer   border-0 p-3">
-            <a class="btn btn-warning w-100 mb-2" href="cart.html"  type="button">Add to Cart</a>
+            <div class="size-section">
+  <label>Select Size:</label>
+
+  <div class="size-options">
+    <button type="button" class="size-btn">S</button>
+    <button type="button" class="size-btn">M</button>
+    <button type="button" class="size-btn">L</button>
+    <button type="button" class="size-btn">XL</button>
+    <button type="button" class="size-btn">XXL</button>
+  </div>
+</div>
+<button 
+  class="btn btn-warning w-100 mb-2 add-to-cart"
+    data-name="Oversized Hoodie"
+    data-price="1299"
+    data-image="https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?auto=format&fit=crop&w=1200&q=80">
+  Add to Cart
+</button>
             <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
           </div>
         </div>
@@ -430,7 +570,24 @@
             </div>
           </div>
           <div class="card-footer   border-0 p-3">
-            <a class="btn btn-warning w-100 mb-2" href="cart.html"  type="button">Add to Cart</a>
+            <div class="size-section">
+  <label>Select Size:</label>
+
+  <div class="size-options">
+    <button type="button" class="size-btn">S</button>
+    <button type="button" class="size-btn">M</button>
+    <button type="button" class="size-btn">L</button>
+    <button type="button" class="size-btn">XL</button>
+    <button type="button" class="size-btn">XXL</button>
+  </div>
+</div>
+<button 
+  class="btn btn-warning w-100 mb-2 add-to-cart"
+    data-name="Blazer Co-ord Set"
+    data-price="2499"
+    data-image="https://images.pexels.com/photos/3755706/pexels-photo-3755706.jpeg?auto=compress&cs=tinysrgb&w=1200">
+  Add to Cart
+</button>
             <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
           </div>
         </div>
@@ -452,7 +609,24 @@
             </div>
           </div>
           <div class="card-footer   border-0 p-3">
-            <a class="btn btn-warning w-100 mb-2" href="cart.html"  type="button">Add to Cart</a>
+            <div class="size-section">
+  <label>Select Size:</label>
+
+  <div class="size-options">
+    <button type="button" class="size-btn">S</button>
+    <button type="button" class="size-btn">M</button>
+    <button type="button" class="size-btn">L</button>
+    <button type="button" class="size-btn">XL</button>
+    <button type="button" class="size-btn">XXL</button>
+  </div>
+</div>
+<button 
+  class="btn btn-warning w-100 mb-2 add-to-cart"
+    data-name="Denim Jacket"
+    data-price="1799"
+    data-image="https://images.pexels.com/photos/2857037/pexels-photo-2857037.jpeg?auto=compress&cs=tinysrgb&w=1200">
+  Add to Cart
+</button>
             <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
           </div>
         </div>
@@ -474,7 +648,24 @@
             </div>
           </div>
           <div class="card-footer   border-0 p-3">
-            <a class="btn btn-warning w-100 mb-2" href="cart.html"  type="button">Add to Cart</a>
+            <div class="size-section">
+  <label>Select Size:</label>
+
+  <div class="size-options">
+    <button type="button" class="size-btn">S</button>
+    <button type="button" class="size-btn">M</button>
+    <button type="button" class="size-btn">L</button>
+    <button type="button" class="size-btn">XL</button>
+    <button type="button" class="size-btn">XXL</button>
+  </div>
+</div>
+<button 
+  class="btn btn-warning w-100 mb-2 add-to-cart"
+  data-name="Kids Kurta Set"
+  data-price="1099"
+  data-image="https://images.pexels.com/photos/3667816/pexels-photo-3667816.jpeg?auto=compress&cs=tinysrgb&w=1200">
+  Add to Cart
+</button>
             <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
           </div>
         </div>
@@ -496,7 +687,24 @@
             </div>
           </div>
           <div class="card-footer   border-0 p-3">
-            <a class="btn btn-warning w-100 mb-2" href="cart.html"  type="button">Add to Cart</a>
+            <div class="size-section">
+  <label>Select Size:</label>
+
+  <div class="size-options">
+    <button type="button" class="size-btn">S</button>
+    <button type="button" class="size-btn">M</button>
+    <button type="button" class="size-btn">L</button>
+    <button type="button" class="size-btn">XL</button>
+    <button type="button" class="size-btn">XXL</button>
+  </div>
+</div>
+<button 
+  class="btn btn-warning w-100 mb-2 add-to-cart"
+  data-name="Chunky Sneakers"
+  data-price="1599"
+  data-image="https://images.pexels.com/photos/974911/pexels-photo-974911.jpeg?auto=compress&cs=tinysrgb&w=1200">
+  Add to Cart
+</button>
             <a class="btn btn-light w-100" href="buynow.html" type="button">Buy Now</a>
           </div>
         </div>
@@ -661,25 +869,115 @@ function goToCart() {
 }
 function searchProducts() {
 
-  let input = document.getElementById("searchInput").value.toLowerCase();
+  let input = document.getElementById("searchInput").value.toLowerCase().trim();
+  let container = document.querySelector(".products-container");
+  let products = Array.from(container.querySelectorAll(".col-sm-6"));
 
-  // ONLY new arrival section il ullath select cheyyunnu
-  let products = document.querySelectorAll("#new .p-card");
+  let matchCount = 0;
 
-  products.forEach(function(product) {
+  products.forEach(function(col) {
 
-    let title = product.querySelector("h6").innerText.toLowerCase();
+    let title = col.querySelector("h6").innerText.toLowerCase();
 
     if (title.includes(input)) {
-      product.style.display = "block";
+      col.style.display = "";
+      container.prepend(col);   // matched items top il varum
+      matchCount++;
     } else {
-      product.style.display = "none";
+      col.style.display = "none";
     }
 
   });
 
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let countDisplay = document.getElementById("cart-count");
+
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  // 🔥 Correct count (include quantity)
+  function updateCartCount() {
+    let totalQty = 0;
+    cart.forEach(item => {
+      totalQty += item.qty;
+    });
+    countDisplay.innerText = totalQty;
+  }
+
+  updateCartCount();
+
+  document.querySelectorAll(".add-to-cart").forEach(button => {
+
+    button.addEventListener("click", function () {
+
+      let product = {
+        name: this.dataset.name,
+        price: parseInt(this.dataset.price),
+        image: this.dataset.image,
+        qty: 1
+      };
+
+      // 🔥 Check if product already exists
+      let existing = cart.find(item => item.name === product.name);
+
+      if (existing) {
+        existing.qty++;   // increase quantity
+      } else {
+        cart.push(product);
+      }
+
+      saveCart();
+      updateCartCount();
+
+      alert("Added to cart ✅");
+    });
+
+  });
+
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let countDisplay = document.getElementById("cart-count");
+
+  function updateCartCount() {
+    if (!countDisplay) return;
+
+    let totalQty = 0;
+    cart.forEach(item => {
+      totalQty += item.qty;
+    });
+
+    countDisplay.innerText = totalQty;
+  }
+
+  updateCartCount();
+});
+
+let selectedSize = "";
+
+document.querySelectorAll(".size-btn").forEach(btn => {
+
+  btn.addEventListener("click", function () {
+
+    if (this.classList.contains("disabled")) return;
+
+    document.querySelectorAll(".size-btn").forEach(b =>
+      b.classList.remove("active")
+    );
+
+    this.classList.add("active");
+    selectedSize = this.innerText;
+  });
+
+});
 </script>
 </body>
 </html>

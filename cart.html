@@ -3,120 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cart</title>
+<title>Shopping Cart</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="cart.css">
+
+<style>
+.size-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 20px;
+  margin-bottom: 6px;
+}
+</style>
 
 </head>
 
-<body class="light">
+<body>
 
-<div class="container cart-wrapper">
+<div class="container py-5">
 
-  <!-- TOP NAV BUTTONS -->
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <button onclick="history.back()" class="nav-btn">
+    <button onclick="history.back()" class="btn btn-outline-dark">
       ← Back
     </button>
 
-    <a href="index.html" class="nav-btn text-decoration-none">
-       Home
-    </a>
+    <h3 class="fw-bold m-0">Shopping Cart</h3>
+
+    <button onclick="clearCart()" class="btn btn-danger btn-sm">
+      Clear Cart
+    </button>
   </div>
 
-  <div class="row g-4">
-
-    <!-- CART TOTAL (TOP ON MOBILE) -->
-    <div class="col-lg-4 order-1 order-lg-2">
-      <div class="cart-card">
-        <h5 class="mb-4">Cart Summary</h5>
-
-        <div class="summary-row">
-          <span>Subtotal</span>
-          <span>₹1998</span>
-        </div>
-
-        <div class="summary-row">
-          <span>Delivery</span>
-          <span>₹40</span>
-        </div>
-
-        <div class="summary-row text-success">
-          <span>Discount</span>
-          <span>- ₹100</span>
-        </div>
-
-        <hr>
-
-        <div class="summary-row summary-total">
-          <span>Total</span>
-          <span>₹1938</span>
-        </div>
-
-        <a href="buynow.html" class="checkout-btn w-100 text-center mt-3">
-          Proceed to Checkout
-        </a>
-      </div>
+  <div class="row">
+    
+    <!-- Cart Items -->
+    <div class="col-lg-8">
+      <div id="cart-items"></div>
     </div>
 
-    <!-- CART ITEMS -->
-    <div class="col-lg-8 order-2 order-lg-1">
-      <div class="cart-card">
-
-        <h4 class="mb-4">My Cart</h4>
-
-        <!-- Item -->
-        <div class="cart-item d-flex align-items-center justify-content-between flex-wrap">
-
-          <div class="d-flex align-items-center gap-3">
-            <img src="https://th.bing.com/th/id/OPAC.1u3QErXYVkcXHA474C474?w=200&h=260&o=7&dpr=1.3&pid=1.7&rm=3" class="cart-img">
-            <div>
-              <h6 class="mb-1">Premium Cotton Shirt</h6>
-              <small>Size: M</small><br>
-              <span class="price">₹999</span>
-            </div>
-          </div>
-
-          <div class="qty-box d-flex align-items-center mt-3 mt-lg-0">
-            <button class="qty-btn">-</button>
-            <span class="mx-3">1</span>
-            <button class="qty-btn">+</button>
-          </div>
-
-          <button class="remove-btn mt-3 mt-lg-0">Remove</button>
-
-        </div>
-
+    <!-- Summary -->
+    <div class="col-lg-4">
+      <div class="p-4 shadow-sm border rounded">
+        <h5 class="fw-bold mb-3">Order Summary</h5>
+        <p>Subtotal: <span id="subtotal">₹0</span></p>
+        <p>Shipping: <span>Free</span></p>
         <hr>
-
-        <!-- Second Item -->
-        <div class="cart-item d-flex align-items-center justify-content-between flex-wrap">
-
-          <div class="d-flex align-items-center gap-3">
-            <img src="https://th.bing.com/th/id/OPAC.1u3QErXYVkcXHA474C474?w=200&h=260&o=7&dpr=1.3&pid=1.7&rm=3" class="cart-img">
-            <div>
-              <h6 class="mb-1">Casual Sneakers</h6>
-              <small>Size: 9</small><br>
-              <span class="price">₹999</span>
-            </div>
-          </div>
-
-          <div class="qty-box d-flex align-items-center mt-3 mt-lg-0">
-            <button class="qty-btn">-</button>
-            <span class="mx-3">1</span>
-            <button class="qty-btn">+</button>
-          </div>
-
-          <button class="remove-btn mt-3 mt-lg-0">Remove</button>
-
-        </div>
-
+        <h5>Total: <span id="total">₹0</span></h5>
+        <button class="btn btn-dark w-100 mt-3">Proceed to Checkout</button>
       </div>
     </div>
 
   </div>
+
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const container = document.getElementById("cart-items");
+
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  function formatCurrency(amount) {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR"
+    }).format(amount);
+  }
+
+  function updateCartCount() {
+    const countDisplay = document.getElementById("cart-count");
+    if (!countDisplay) return;
+
+    let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    countDisplay.innerText = totalQty;
+  }
+
+  function updateTotals() {
+    let subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+    document.getElementById("subtotal").innerText = formatCurrency(subtotal);
+    document.getElementById("total").innerText = formatCurrency(subtotal);
+  }
+
+  function renderCart() {
+
+    container.innerHTML = "";
+
+    if (cart.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-5">
+          <h5 class="fw-bold">Your cart is empty 🛒</h5>
+          <p class="text-muted">Add some products to continue shopping.</p>
+          <a href="index.html" class="btn btn-dark mt-2">Continue Shopping</a>
+        </div>
+      `;
+      updateTotals();
+      updateCartCount();
+      return;
+    }
+
+    cart.forEach((item, index) => {
+
+      const card = document.createElement("div");
+      card.className = "d-flex justify-content-between align-items-center p-3 mb-3 shadow-sm rounded border";
+
+      card.innerHTML = `
+        <div class="d-flex align-items-center gap-3">
+          <img src="${item.image}" width="90" height="100"
+               style="object-fit:cover;border-radius:8px;">
+          <div>
+            <h6 class="mb-1">${item.name}</h6>
+
+            ${item.size ? `<span class="size-badge">Size: ${item.size}</span>` : ""}
+
+            <p class="mb-2 text-muted">${formatCurrency(item.price)}</p>
+
+            <div class="d-flex align-items-center gap-2">
+              <button class="btn btn-sm btn-outline-dark" onclick="decreaseQty(${index})">-</button>
+              <span>${item.qty}</span>
+              <button class="btn btn-sm btn-outline-dark" onclick="increaseQty(${index})">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-end">
+          <p class="fw-bold mb-2">${formatCurrency(item.price * item.qty)}</p>
+          <button class="btn btn-sm btn-danger" onclick="removeItem(${index})">
+            Remove
+          </button>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+
+    updateTotals();
+    updateCartCount();
+  }
+
+  window.increaseQty = function(index) {
+    cart[index].qty++;
+    saveCart();
+    renderCart();
+  };
+
+  window.decreaseQty = function(index) {
+    if (cart[index].qty > 1) {
+      cart[index].qty--;
+    } else {
+      cart.splice(index, 1);
+    }
+    saveCart();
+    renderCart();
+  };
+
+  window.removeItem = function(index) {
+    cart.splice(index, 1);
+    saveCart();
+    renderCart();
+  };
+
+  window.clearCart = function() {
+    if (confirm("Are you sure you want to clear the cart?")) {
+      cart = [];
+      localStorage.removeItem("cart");
+      renderCart();
+    }
+  };
+
+  renderCart();
+});
+</script>
 
 </body>
 </html>
