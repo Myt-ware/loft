@@ -896,85 +896,78 @@ document.addEventListener("DOMContentLoaded", function () {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   let countDisplay = document.getElementById("cart-count");
 
-  function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
-
-  // 🔥 Correct count (include quantity)
   function updateCartCount() {
-    let totalQty = 0;
-    cart.forEach(item => {
-      totalQty += item.qty;
-    });
+    if (!countDisplay) return;
+
+    let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
     countDisplay.innerText = totalQty;
   }
 
   updateCartCount();
 
+  // ✅ SIZE SELECT (Product Wise)
+  document.querySelectorAll(".size-options").forEach(sizeGroup => {
+
+    sizeGroup.querySelectorAll(".size-btn").forEach(btn => {
+
+      btn.addEventListener("click", function () {
+
+        sizeGroup.querySelectorAll(".size-btn").forEach(b =>
+          b.classList.remove("active")
+        );
+
+        this.classList.add("active");
+
+      });
+
+    });
+
+  });
+
+  // ✅ ADD TO CART WITH SIZE
   document.querySelectorAll(".add-to-cart").forEach(button => {
 
     button.addEventListener("click", function () {
+
+      let card = this.closest(".card");
+      let activeSizeBtn = card.querySelector(".size-btn.active");
+
+      if (!activeSizeBtn) {
+        alert("Please select size ⚠");
+        return;
+      }
+
+      let selectedSize = activeSizeBtn.innerText;
 
       let product = {
         name: this.dataset.name,
         price: parseInt(this.dataset.price),
         image: this.dataset.image,
+        size: selectedSize,
         qty: 1
       };
 
-      // 🔥 Check if product already exists
-      let existing = cart.find(item => item.name === product.name);
+      // ✅ Check if same product + same size already exists
+      let existingItem = cart.find(item =>
+        item.name === product.name && item.size === product.size
+      );
 
-      if (existing) {
-        existing.qty++;   // increase quantity
+      if (existingItem) {
+        existingItem.qty++;
       } else {
         cart.push(product);
       }
 
-      saveCart();
+      localStorage.setItem("cart", JSON.stringify(cart));
       updateCartCount();
 
       alert("Added to cart ✅");
+
+      // ✅ AUTO RESET SIZE
+      activeSizeBtn.classList.remove("active");
+
     });
 
-  });
-
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  let countDisplay = document.getElementById("cart-count");
-
-  function updateCartCount() {
-    if (!countDisplay) return;
-
-    let totalQty = 0;
-    cart.forEach(item => {
-      totalQty += item.qty;
-    });
-
-    countDisplay.innerText = totalQty;
-  }
-
-  updateCartCount();
-});
-
-let selectedSize = "";
-
-document.querySelectorAll(".size-btn").forEach(btn => {
-
-  btn.addEventListener("click", function () {
-
-    if (this.classList.contains("disabled")) return;
-
-    document.querySelectorAll(".size-btn").forEach(b =>
-      b.classList.remove("active")
-    );
-
-    this.classList.add("active");
-    selectedSize = this.innerText;
   });
 
 });
