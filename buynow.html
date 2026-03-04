@@ -84,69 +84,61 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
   let container = document.getElementById("order-items");
 
-  let subtotal = 0;
+  let product = JSON.parse(localStorage.getItem("buyNowItem"));
 
-  if(cart.length === 0){
-    container.innerHTML = "<p>Your cart is empty 😕</p>";
+  if(!product){
+    container.innerHTML = "<p>No product selected 😕</p>";
+    return;
   }
 
-  cart.forEach(item => {
-
-    subtotal += item.price * item.qty;
-
-    container.innerHTML += `
-      <div class="product-box d-flex gap-3 mb-3">
-        <img src="${item.image}" class="product-img">
-        <div>
-          <h6 class="mb-1">${item.name}</h6>
-          <small>Size: ${item.size}</small><br>
-          <small>Qty: ${item.qty}</small><br>
-          <small>₹ ${item.price}</small>
-        </div>
-      </div>
-    `;
-  });
-
+  let subtotal = product.price * product.qty;
   let delivery = 40;
   let tax = Math.round(subtotal * 0.05);
   let total = subtotal + delivery + tax;
+
+  container.innerHTML = `
+    <div class="product-box d-flex gap-3 mb-3">
+      <img src="${product.image}" class="product-img">
+      <div>
+        <h6 class="mb-1">${product.name}</h6>
+        <small>Size: ${product.size}</small><br>
+        <small>Qty: ${product.qty}</small><br>
+        <small>₹ ${product.price}</small>
+      </div>
+    </div>
+  `;
 
   document.getElementById("subtotal").innerText = "₹" + subtotal;
   document.getElementById("tax").innerText = "₹" + tax;
   document.getElementById("grand-total").innerText = "₹" + total;
 
-  // PLACE ORDER BUTTON
+  // PLACE ORDER
   document.querySelector(".checkout-btn").addEventListener("click", function(){
 
     let inputs = document.querySelectorAll(".checkout-input");
-    let isValid = true;
+    let valid = true;
 
-    inputs.forEach(input => {
-      if(input.value.trim() === ""){
-        input.style.border = "1px solid red";
-        isValid = false;
+    inputs.forEach(input=>{
+      if(input.value.trim()===""){
+        input.style.border="1px solid red";
+        valid=false;
       } else {
-        input.style.border = "1px solid #ccc";
+        input.style.border="1px solid #ccc";
       }
     });
 
-    if(!isValid){
-      alert("Please fill all details ⚠");
+    if(!valid){
+      alert("Fill all details ⚠");
       return;
     }
 
-    if(cart.length === 0){
-      alert("Cart is empty!");
-      return;
-    }
+    alert("Order placed successfully 🎉");
 
-    alert("Order Placed Successfully 🎉");
+    localStorage.removeItem("buyNowItem");
 
-    localStorage.removeItem("cart"); // Clear cart
-    window.location.href = "index.html";
+    window.location.href="index.html";
   });
 
 });
